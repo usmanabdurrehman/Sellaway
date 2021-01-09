@@ -1,4 +1,4 @@
-.signup-wrapper{
+.form-wrapper{
 	min-height: 100vh;
 	display: flex;
 	justify-content: center;
@@ -7,7 +7,7 @@
 	padding:20px;
 }
 
-.signup-form{
+.form{
 	height: 600px;
 	width: 1020px;
 	background: white;
@@ -17,23 +17,27 @@
 	grid-template-columns: 1fr 1fr;
 }
 
-.signup-fields{
+.form-fields{
 	display: flex;
 	align-items: center;
 	padding:0 50px;
 }
 
-.signup-fields h1{
+.form-fields h1{
 	font-size: 48px;
 }
 
-.signup-fields>div{
+.form-fields>div{
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	width:60%;
 }
 
-.signup-input,.signup-button{
-	margin:15px 0;
+.form-input{
+	margin:5px 0 !important;
+}
+
+.form-button{
+	margin:15px 0 !important;
 }

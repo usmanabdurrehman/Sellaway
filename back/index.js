@@ -1,8 +1,13 @@
 let express = require('express')
 let app = express()
+let cors = require('cors')
 
 let db = require('./config/db')
 
+app.use(cors({
+	origin:true,
+	credentials:true
+}))
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 

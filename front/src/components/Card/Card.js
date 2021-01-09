@@ -6,7 +6,7 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-export default function Card() {
+export default function Card(props) {
 	return (
 		<div className='card'>
 			<div className="card-img">
@@ -35,12 +35,20 @@ export default function Card() {
 			<IconButton className='icon heart'>
 				<FavoriteIcon/>	
 			</IconButton>
-			<IconButton className='icon edit'>
-				<EditIcon/>	
-			</IconButton>
-			<IconButton className='icon delete'>
-				<DeleteIcon/>	
-			</IconButton>
+			{
+				(props.page=='self')?
+				(
+					<>
+						<IconButton className='icon edit'>
+							<EditIcon/>	
+						</IconButton>
+						<IconButton className='icon delete'>
+							<DeleteIcon/>	
+						</IconButton>
+					</>
+				):
+				null
+			}
 		</div>
 	)
 }

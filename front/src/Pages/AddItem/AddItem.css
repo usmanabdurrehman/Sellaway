@@ -1,0 +1,9 @@
+.add-item{
+	margin:50px 0;
+	height: 600px;
+	background: white;
+	border-radius: 10px;
+	box-shadow: 3px 3px 7px lightgray;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}

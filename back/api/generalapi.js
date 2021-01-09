@@ -27,7 +27,7 @@ router.post('/signup',(req,res)=>{
 	newUser.save()
 	.then((user)=>{
 		console.log(user)
-		res.send(user)
+		res.send({status:true,user})
 	})
 })
 
