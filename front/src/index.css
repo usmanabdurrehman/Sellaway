@@ -31,6 +31,7 @@ code {
   grid-gap:20px;
   margin: 50px 0;
   flex:1;
+  background: #f4f4f4;
 }
 
 .container{

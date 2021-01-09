@@ -1,9 +1,7 @@
 import React,{useState} from 'react'
 import Layout from '../../Layout/Layout'
 import {TextField,Button,Switch,MenuItem} from '@material-ui/core'
-import './AddItem.css'
-import axios from 'axios'
-import { useAlert } from 'react-alert'
+import './EditItem.css'
 
 const options = [
   {
@@ -40,40 +38,21 @@ export default function AddItem() {
 	   setCat(event.target.value);
 	}
 
-	let alert = useAlert()
-
 	let clickHandler = () => {
-		axios({
-			method:'post',
-			url:'/user/addItem',
-			withCredentials:true,
-			data:fields
-		})
-		.then(res=>{
-			if(res.data.status){
-				alert.success(res.data.msg)
-				setFields({
-					name:'',
-					location:'',
-					category:'',
-					price:0,
-					featured:true
-				})
-			}
-		})
+		console.log(fields)
 	}	
 
 	return (
 		<Layout>
-			<div className='add-item'>
+			<div className='edit-item'>
 				<div className='form-image'>
 					
 				</div>
 				<div className='form-fields'>
 					<div>
-						<h1>Add Item</h1>
-						<TextField onChange={e=>setFields({...fields,name:e.target.value})} value={fields.name} label='Name' className='form-input' fullWidth/>
-						<TextField onChange={e=>setFields({...fields,location:e.target.value})} value={fields.location} label='Location' className='form-input' fullWidth/>
+						<h1>Edit Item</h1>
+						<TextField onChange={e=>setFields({...fields,name:e.target.value})} label='Name' className='form-input' fullWidth/>
+						<TextField onChange={e=>setFields({...fields,location:e.target.value})} label='Location' className='form-input' fullWidth/>
 						<TextField
 				          select
 				          label="Category"
@@ -89,7 +68,7 @@ export default function AddItem() {
 				            </MenuItem>
 				          ))}
 				        </TextField>
-				        <TextField onChange={e=>setFields({...fields,price:parseInt(e.target.value)})} value={fields.price} label='Price' className='form-input' type='number' fullWidth/>
+				        <TextField onChange={e=>setFields({...fields,price:parseInt(e.target.value)})} label='Price' className='form-input' type='number' fullWidth/>
 				        <div className='switch-wrapper'>
 				        	<Switch
 						        checked={fields.featured}
@@ -100,7 +79,7 @@ export default function AddItem() {
 					    	/>
 					    	<div>Featured</div>
 				        </div>
-						<Button onClick={clickHandler} className='form-button'>Add Item</Button>
+						<Button onClick={clickHandler} className='form-button'>Edit Item</Button>
 					</div>
 				</div>
 			</div>

@@ -15,7 +15,7 @@ export default function Signin() {
 
 	return (
 		<div className='form-wrapper'>
-			<div className='form'>
+			<div className='form left-form'>
 				<div className='form-fields'>
 					<div>
 						<h1>Sign In</h1>
@@ -25,7 +25,7 @@ export default function Signin() {
 					</div>
 				</div>
 				<div className='form-image'>
-					
+					<img src='signin.jpg'/>
 				</div>
 			</div>
 		</div>

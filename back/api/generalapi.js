@@ -29,6 +29,9 @@ router.post('/signup',(req,res)=>{
 		console.log(user)
 		res.send({status:true,user})
 	})
+	.catch(err=>{
+		res.send(status:false,msg:'The user was not created')
+	})
 })
 
 router.get('/dummy',(req,res)=>{

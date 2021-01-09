@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import './Forms.css'
 import {TextField,Button} from '@material-ui/core'
 import axios from 'axios'
+import {useAlert} from 'react-alert'
 
 export default function Signup() {
 
@@ -12,6 +13,8 @@ export default function Signup() {
 		pwd:''
 	})
 
+	let alert = useAlert()
+
 	let clickHandler = () => {
 		axios({
 			url:'/signup',
@@ -20,7 +23,12 @@ export default function Signup() {
 			data:fields
 		})
 		.then(res=>{
-			console.log(res)
+			if(!res.data.status){
+				alert.error(res.data.msg)
+			}
+			else{
+				
+			}
 		})
 	}
 
@@ -28,7 +36,7 @@ export default function Signup() {
 		<div className='form-wrapper'>
 			<div className='form'>
 				<div className='form-image'>
-					
+					<img src='signup.jpg'/>
 				</div>
 				<div className='form-fields'>
 					<div>

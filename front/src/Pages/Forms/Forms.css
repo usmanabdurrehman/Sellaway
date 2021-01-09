@@ -14,7 +14,11 @@
 	border-radius: 10px;
 	box-shadow: 3px 3px 7px lightgray;
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 2fr 1fr;
+}
+
+.left-form{
+	grid-template-columns: 1fr 2fr;
 }
 
 .form-fields{
@@ -31,7 +35,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	width:60%;
+	width:100%;
 }
 
 .form-input{
@@ -40,4 +44,10 @@
 
 .form-button{
 	margin:15px 0 !important;
+}
+
+.form img{
+	width:100%;
+	height: 100%;
+	border-radius: 10px;
 }
