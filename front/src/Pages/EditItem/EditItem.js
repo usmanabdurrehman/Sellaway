@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import Layout from '../../Layout/Layout'
 import {TextField,Button,Switch,MenuItem} from '@material-ui/core'
 import './EditItem.css'
+import {useAlert} from 'react-alert'
 
 const options = [
   {
@@ -22,14 +23,16 @@ const options = [
   },
 ];
 
-export default function AddItem() {
+export default function EditItem() {
 
 	let [fields,setFields] = useState({
 		name:'',
 		location:'',
 		category:'',
 		price:0,
-		featured:true
+		featured:true,
+		image:null,
+		imgUrl:null
 	})
 
 	const [cat, setCat] = React.useState('mobiles and accessories');
@@ -42,11 +45,39 @@ export default function AddItem() {
 		console.log(fields)
 	}	
 
+	let imageOnChange = (e) => {
+		if(e.target.files[0]){
+			let imgUrl = URL.createObjectURL(e.target.files[0])
+			setFields({...fields,image:e.target.files[0],imgUrl})
+		}
+	}
+
 	return (
 		<Layout>
 			<div className='edit-item'>
 				<div className='form-image'>
-					
+						{
+							(fields.imgUrl==null)?
+							(
+								<div className='file-wrapper'>
+									<input type="file" id='image' onChange={imageOnChange}/>
+									<label for='image'>
+										<img src='default.jpg'/>
+									</label>
+								</div>
+							):
+							(
+								<div className='image-wrapper'>
+									<img src={fields.imgUrl}/>
+									<div className='absolute file-wrapper'>
+										<input type="file" id='image' onChange={imageOnChange}/>
+										<label for='image'>
+											<img src='default.jpg'/>
+										</label>
+									</div>
+								</div>
+							)
+						}
 				</div>
 				<div className='form-fields'>
 					<div>

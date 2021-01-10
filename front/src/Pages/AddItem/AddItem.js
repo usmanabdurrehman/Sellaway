@@ -31,7 +31,9 @@ export default function AddItem() {
 		location:'',
 		category:'',
 		price:0,
-		featured:true
+		featured:true,
+		image:null,
+		imgUrl:null
 	})
 
 	const [cat, setCat] = React.useState('mobiles and accessories');
@@ -41,6 +43,13 @@ export default function AddItem() {
 	}
 
 	let alert = useAlert()
+
+	let imageOnChange = (e) => {
+		if(e.target.files[0]){
+			let imgUrl = URL.createObjectURL(e.target.files[0])
+			setFields({...fields,image:e.target.files[0],imgUrl})
+		}
+	}
 
 	let clickHandler = () => {
 		axios({
@@ -67,7 +76,28 @@ export default function AddItem() {
 		<Layout>
 			<div className='add-item'>
 				<div className='form-image'>
-					
+						{
+							(fields.imgUrl==null)?
+							(
+								<div className='file-wrapper'>
+									<input type="file" id='image' onChange={imageOnChange}/>
+									<label for='image'>
+										<img src='default.jpg'/>
+									</label>
+								</div>
+							):
+							(
+								<div className='image-wrapper'>
+									<img src={fields.imgUrl}/>
+									<div className='absolute file-wrapper'>
+										<input type="file" id='image' onChange={imageOnChange}/>
+										<label for='image'>
+											<img src='default.jpg'/>
+										</label>
+									</div>
+								</div>
+							)
+						}
 				</div>
 				<div className='form-fields'>
 					<div>

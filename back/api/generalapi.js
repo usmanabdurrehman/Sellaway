@@ -30,7 +30,7 @@ router.post('/signup',(req,res)=>{
 		res.send({status:true,user})
 	})
 	.catch(err=>{
-		res.send(status:false,msg:'The user was not created')
+		res.send({status:false,msg:'The user was not created'})
 	})
 })
 

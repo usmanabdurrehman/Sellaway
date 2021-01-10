@@ -24,7 +24,7 @@ export default function App() {
       <Signin/>
       <Signup/>
       <Home/>
-      <AddItem/>
+     {/* { <AddItem/>} */}
       <EditItem/>
     </>
     </AlertProvider>
