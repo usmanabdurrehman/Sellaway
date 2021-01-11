@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import './Forms.css'
 import {TextField,Button} from '@material-ui/core'
 import axios from 'axios'
-import {useAlert} from 'react-alert'
+import {Redirect} from 'react-router-dom'
 
 export default function Signup() {
 
@@ -13,7 +13,7 @@ export default function Signup() {
 		pwd:''
 	})
 
-	let alert = useAlert()
+	let [redirect,setRedirect] = useState(false)
 
 	let clickHandler = () => {
 		axios({
@@ -23,8 +23,9 @@ export default function Signup() {
 			data:fields
 		})
 		.then(res=>{
-			if(!res.data.status){
-				alert.error(res.data.msg)
+			console.log(res.data)
+			if(res.data.status){
+				setRedirect(true)
 			}
 			else{
 				
@@ -44,11 +45,14 @@ export default function Signup() {
 						<TextField onChange={e=>setFields({...fields,fname:e.target.value})} label='First Name' className='form-input' fullWidth/>
 						<TextField onChange={e=>setFields({...fields,lname:e.target.value})} label='Last Name' className='form-input' fullWidth/>
 						<TextField onChange={e=>setFields({...fields,email:e.target.value})} label='Email' className='form-input' fullWidth/>
-						<TextField onChange={e=>setFields({...fields,pwd:e.target.value})} label='Password' className='form-input' fullWidth/>
+						<TextField onChange={e=>setFields({...fields,pwd:e.target.value})} type='password' label='Password' className='form-input' fullWidth/>
 						<Button onClick={clickHandler} className='form-button'>Sign up</Button>
 					</div>
 				</div>
 			</div>
+			{
+				(redirect)?(<Redirect to={{pathname:'/signin',state:{from:'signup'}}}/>):null
+			}
 		</div>
 	)
 }

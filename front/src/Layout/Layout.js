@@ -8,8 +8,10 @@ export default function Layout(props) {
 	return (
 		<div className='layout'>
 			<Navbar/>
-			<div className='container'>
-				{props.children}
+			<div className='layout-container'>
+				<div className='container'>
+					{props.children}
+				</div>
 			</div>
 			<Footer1/>
 			<Footer/>

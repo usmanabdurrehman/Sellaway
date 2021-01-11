@@ -66,7 +66,9 @@ export default function AddItem() {
 					location:'',
 					category:'',
 					price:0,
-					featured:true
+					featured:true,
+					image:null,
+					imgUrl:null
 				})
 			}
 		})

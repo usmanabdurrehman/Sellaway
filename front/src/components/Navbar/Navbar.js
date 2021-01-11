@@ -1,13 +1,15 @@
-import React,{useRef,useEffect} from 'react'
+import React,{useRef,useEffect,useState} from 'react'
 import './Navbar.css'
 import SearchIcon from '@material-ui/icons/Search';
 import {IconButton} from '@material-ui/core'
+import {Redirect} from 'react-router-dom'
 
 export default function Navbar() {
 
 	let inputRef = useRef(null)
 	let inputWrapperRef = useRef(null)
 
+	let [redirect,setRedirect] = useState(false)
 
 	useEffect(() => {
 		inputRef.current.addEventListener('focus',()=>{
@@ -33,9 +35,14 @@ export default function Navbar() {
 			 	<div className='nav'>
 			 		<div>Categories</div>
 			 		<div>Contact Us</div>
-			 		<div>About Us</div>
+			 		<div className='logout' 
+			 		onClick={e=>{
+			 			localStorage.removeItem('token')
+			 			setRedirect(true)
+			 		}}>Logout</div>
 			 	</div>
 			</div>
+			{(redirect)?(<Redirect to='/signin'/>):null}
 		</div>
 	)
 }

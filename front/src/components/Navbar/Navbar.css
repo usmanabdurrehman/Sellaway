@@ -2,7 +2,6 @@
 	background: var(--3rd);
 	height: 70px;
 	font-size: 14px;
-	box-shadow: 2px 2px 7px lightgray;
 	color: white;
 }
 
@@ -46,4 +45,8 @@
 }
 
 .navbar .search-icon{
+}
+
+.navbar .logout{
+	cursor: pointer;
 }

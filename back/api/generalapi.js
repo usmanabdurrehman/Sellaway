@@ -1,6 +1,7 @@
 let router = require('express').Router()
 let User = require('../Models/User')
 let bcrypt = require('bcryptjs')
+let jwt = require('jsonwebtoken')
 
 router.post('/signin',(req,res)=>{
 	let {email,pwd} = req.body
@@ -8,7 +9,10 @@ router.post('/signin',(req,res)=>{
 	User.findOne({email}).lean()
 	.then(user=>{
 		if(bcrypt.compareSync(pwd, user.pwd)){
-			res.send({auth:true,user})
+			jwt.sign(user,'secret',(err,token)=>{
+				console.log('yay')
+				res.send({auth:true,user,token})
+			})
 		}
 		else{
 			res.send({auth:false})
