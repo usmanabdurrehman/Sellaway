@@ -19,11 +19,11 @@ router.get('/getInitialItems',(req,res)=>{
 
 router.get('/favouriteItems',(req,res)=>{
 
-	let email = 'email'
+	let email = 'selena@gmail.com'
 
 	Item.find().lean()
 	.then(items=>{
-		let favItems = items.filter(item=>item.favourites.contains(email))
+		let favItems = items.filter(item=>item.favourites.includes(email))
 		res.send({
 			status:true,
 			items:favItems
@@ -39,7 +39,7 @@ router.get('/favouriteItems',(req,res)=>{
 
 
 router.get('/yourItems',(req,res)=>{
-	let email = 'email'
+	let email = 'selena@gmail.com'
 
 	Item.find({email}).lean()
 	.then(items=>{

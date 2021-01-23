@@ -36,15 +36,15 @@ export default function App() {
   return (
   	<AlertProvider template={AlertTemplate} {...options}>
       <Router>
-        <PublicRoute path='/signup' component={Signup}/>
-        <PublicRoute path='/signin' component={Signin}/>
+        <Route path='/signup' component={Signup}/>
+        <Route path='/signin' component={Signin}/>
 
-        <PrivateRoute path='/' exact component={Home}/>
-        <PrivateRoute path='/yourItems' component={YourItems}/>
-        <PrivateRoute path='/favItems' component={FavItems}/>
+        <Route path='/' exact component={Home}/>
+        <Route path='/yourItems' component={YourItems}/>
+        <Route path='/favItems' component={FavItems}/>
         
-        <PrivateRoute path='/addItem' component={AddItem}/>
-        <PrivateRoute path='/editItem' component={EditItem}/>
+        <Route path='/addItem' component={AddItem}/>
+        <Route path='/editItem' component={EditItem}/>
       </Router>
     </AlertProvider>
   )
