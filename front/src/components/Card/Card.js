@@ -6,7 +6,7 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-export default function Card({item:{name,price,location,date},page}) {
+export default function Card({item:{name,price,location,date,favedByUser},page}) {
 	return (
 		<div className='card'>
 			<div className="card-img">
@@ -33,7 +33,7 @@ export default function Card({item:{name,price,location,date},page}) {
 				</IconButton>
 			</div>
 			<IconButton className='icon heart'>
-				<FavoriteIcon/>	
+				<FavoriteIcon style={{color:favedByUser?'red':'#ccc'}}/>	
 			</IconButton>
 			{
 				(page=='self')?

@@ -5,8 +5,12 @@ let bcrypt = require('bcryptjs')
 
 // tested
 router.get('/getInitialItems',(req,res)=>{
+
+	let email = 'selena@gmail.com'
+
 	Item.find().limit(20).lean()
 	.then(items=>{
+		items.forEach(item=>{item.favedByUser = item.favourites.includes(email)?true:false})
 		res.send({items,status:true})
 	})
 	.catch(err=>{
@@ -24,6 +28,7 @@ router.get('/favouriteItems',(req,res)=>{
 	Item.find().lean()
 	.then(items=>{
 		let favItems = items.filter(item=>item.favourites.includes(email))
+		favItems.forEach(item=>{item.favedByUser = item.favourites.includes(email)?true:false})
 		res.send({
 			status:true,
 			items:favItems
@@ -43,6 +48,7 @@ router.get('/yourItems',(req,res)=>{
 
 	Item.find({email}).lean()
 	.then(items=>{
+		items.forEach(item=>{item.favedByUser = item.favourites.includes(email)?true:false})
 		res.send({
 			status:true,
 			items

@@ -16,6 +16,7 @@ export default function Home() {
 			withCredentials:true
 		})
 		.then(res=>{
+			console.log(res.data.items)
 			if(res.status){
 				setItems(res.data.items)
 			}
