@@ -25,7 +25,7 @@ router.get('/getInitialItems',(req,res)=>{
 
 	Item.find().limit(20).sort({createdAt:-1}).lean()
 	.then(items=>{
-		items.forEach(item=>{item.favedByUser = item.favourites.includes(email)?true:false})
+		items.forEach(item=>{item.favedByUser = item.favourites.includes(email)})
 		res.send({items,status:true})
 	})
 	.catch(err=>{
@@ -43,7 +43,7 @@ router.get('/favouriteItems',(req,res)=>{
 	Item.find().sort({createdAt:-1}).lean()
 	.then(items=>{
 		let favItems = items.filter(item=>item.favourites.includes(email))
-		favItems.forEach(item=>{item.favedByUser = item.favourites.includes(email)?true:false})
+		favItems.forEach(item=>{item.favedByUser = true})
 		res.send({
 			status:true,
 			items:favItems
@@ -63,7 +63,7 @@ router.get('/yourItems',(req,res)=>{
 
 	Item.find({email}).sort({createdAt:-1}).lean()
 	.then(items=>{
-		items.forEach(item=>{item.favedByUser = item.favourites.includes(email)?true:false})
+		items.forEach(item=>{item.favedByUser = item.favourites.includes(email)})
 		res.send({
 			status:true,
 			items

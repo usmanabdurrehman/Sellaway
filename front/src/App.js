@@ -1,7 +1,7 @@
 import React from 'react'
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic'
-import {AddItem,EditItem,FavItems,YourItems,Home,Signin,Signup} from './Pages'
+import {AddItem,EditItem,FavItems,YourItems,Home,Signin,Signup,CardDesc} from './Pages'
 
 import {BrowserRouter as Router,Route} from 'react-router-dom'
 import axios from 'axios'
@@ -32,6 +32,7 @@ export default function App() {
         
         <PrivateRoute path='/addItem' component={AddItem}/>
         <PrivateRoute path='/editItem' component={EditItem}/>
+        <PrivateRoute path='/cardDescription' component={CardDesc}/>
       </Router>
     </AlertProvider>
   )

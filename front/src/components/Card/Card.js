@@ -1,63 +1,112 @@
-import React from 'react'
-import './Card.css'
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import IconButton from '@material-ui/core/IconButton';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
+import React from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
-export default function Card({item:{name,price,location,date,favedByUser,filename},page}) {
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import IconButton from "@material-ui/core/IconButton";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
 
+import styles from "./Card.module.css";
+
+export default function Card({
+	item: { _id, name, price, location, date, favedByUser, filename },
+	page,
+}) {
 	let favItem = () => {
-
-	}
+		axios({
+			method: "post",
+			url: "/user/addFavourite",
+			withCredentials: true,
+			data: { id: _id },
+		}).then((res) => {});
+	};
 
 	let unfavItem = () => {
-
-	}
+		axios({
+			method: "post",
+			url: "/user/removeFavourite",
+			withCredentials: true,
+			data: { id: _id },
+		}).then((res) => {});
+	};
 
 	return (
-		<div className='card'>
-			<div className="card-img">
-				<img src={`http://localhost:7000/itemImages/${filename}`} alt=""/>
+		<div className={styles.card}>
+			<div className={styles.cardImg}>
+				<img
+					src={`http://localhost:7000/itemImages/${filename}`}
+					alt=""
+				/>
 			</div>
-			<div className="card-desc">
-				<div>
+			<div className={styles.cardDesc}>
+				<div className={styles.cardName}>
 					<h3>{name}</h3>
-					<p><b>Rs</b> {price}</p>
+					<p>
+						<b>Rs</b> {price}
+					</p>
 				</div>
 
-				<div className='card-footer'>
-					<div className='location'>
-						{location}
-					</div>
-					<div className='date'>
-						{date}
-					</div>
+				<div className={styles.cardFooter}>
+					<div className={styles.location}>{location}</div>
+					<div className={styles.date}>{date}</div>
 				</div>
 
-
-				<IconButton className='icon arrow'>
-					<ArrowForwardIcon/>	
-				</IconButton>
+				<Link
+					to={{
+						pathname: "/cardDescription",
+						state: {
+							item: {
+								_id,
+								name,
+								price,
+								location,
+								date,
+								favedByUser,
+								filename,
+							},
+						},
+					}}
+				>
+					<IconButton className={`${styles.icon} ${styles.arrow}`}>
+						<ArrowForwardIcon />
+					</IconButton>
+				</Link>
 			</div>
-			<IconButton className='icon heart' onClick={favedByUser ? favItem : unfavItem}>
-				<FavoriteIcon style={{color:favedByUser?'red':'#ccc'}}/>	
+			<IconButton
+				className={`${styles.icon} ${styles.heart}`}
+				onClick={favedByUser ? unfavItem : favItem}
+			>
+				<FavoriteIcon style={{ color: favedByUser ? "red" : "#ccc" }} />
 			</IconButton>
-			{
-				(page=='self')?
-				(
-					<>
-						<IconButton className='icon edit'>
-							<EditIcon/>	
+			{page == "self" ? (
+				<>
+					<Link
+						to={{
+							pathname: "/editItem",
+							state: {
+								item: {
+									_id,
+									name,
+									price,
+									location,
+									date,
+									favedByUser,
+									filename,
+								},
+							},
+						}}
+					>
+						<IconButton className={`${styles.icon} ${styles.edit}`}>
+							<EditIcon />
 						</IconButton>
-						<IconButton className='icon delete'>
-							<DeleteIcon/>	
-						</IconButton>
-					</>
-				):
-				null
-			}
+					</Link>
+					<IconButton className={`${styles.icon} ${styles.delete}`}>
+						<DeleteIcon />
+					</IconButton>
+				</>
+			) : null}
 		</div>
-	)
+	);
 }

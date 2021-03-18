@@ -12,7 +12,7 @@
 	transform: translateY(-3px);
 }
 
-.card .card-img{
+.card .cardImg{
 	height: 200px;
 	display: flex;
 	align-items: center;
@@ -24,16 +24,21 @@
 	max-height: 100%;
 }
 
-.card .card-desc{
+.card .cardDesc{
 	padding:20px 20px 10px 20px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	height:calc(100% - 200px);
 	position: relative;
+	box-sizing: border-box;
 }
 
-.card .card-footer{
+.card .cardName{
+	width:70%;
+}
+
+.card .cardFooter{
 	display: flex;
 	justify-content: space-between;
 	font-size: 12px;

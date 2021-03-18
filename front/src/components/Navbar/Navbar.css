@@ -24,33 +24,6 @@
 	margin-left:20px;
 }
 
-.navbar .search{
-	border:none;
-	/* width:100%; */
-	transition: 0.4s;
-	background: transparent;
-	font-size: 14px;
-}
-
-.navbar .search::-moz-focus-outer { border: 0; }
-
-.navbar .searchWrapper{
-	padding:0 0 0 15px;
-	background: white;
-	border-radius: 30px;
-	width:240px;
-	transition: 0.4s;
-	display: grid;
-	grid-template-columns: 1fr 50px;
-}
-
-.navbar .onfocuswrapper{
-	width:280px;
-}
-
-.navbar .search-icon{
-}
-
 .navbar .logout{
 	cursor: pointer;
 }
