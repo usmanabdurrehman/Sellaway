@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import Layout from '../../Layout/Layout'
+import {Layout} from '../../Layout'
 import {TextField,Button,Switch,MenuItem} from '@material-ui/core'
 import './EditItem.css'
 import {useAlert} from 'react-alert'
@@ -53,7 +53,7 @@ export default function EditItem() {
 	}
 
 	return (
-		<Layout>
+		<Layout container>
 			<div className='edit-item'>
 				<div className='form-image'>
 						{
@@ -68,7 +68,7 @@ export default function EditItem() {
 							):
 							(
 								<div className='image-wrapper'>
-									<img src={fields.imgUrl}/>
+									<img className='imageDisplay' src={fields.imgUrl}/>
 									<div className='absolute file-wrapper'>
 										<input type="file" id='image' onChange={imageOnChange}/>
 										<label for='image'>

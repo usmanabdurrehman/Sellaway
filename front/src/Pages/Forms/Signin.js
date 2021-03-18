@@ -4,6 +4,7 @@ import {TextField,Button} from '@material-ui/core'
 import {useAlert} from 'react-alert'
 import {Redirect} from 'react-router-dom'
 import axios from 'axios'
+import Cookies from 'js-cookie'
 
 export default function Signin(props) {
 
@@ -31,7 +32,7 @@ export default function Signin(props) {
 			let {token,auth,user} = res.data
 			if(auth==true){
 				console.log(token)
-				localStorage.setItem('token',JSON.stringify(token))
+				Cookies.set('token', JSON.stringify(token));
 				setRedirect(true)
 			}
 		})

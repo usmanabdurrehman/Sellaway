@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import './YourItems.css'
-import Layout from '../../Layout/Layout'
-import Card from '../../components/Card/Card'
+import {Layout} from '../../Layout'
+import {Card,CardContainer} from '../../Components'
 import axios from 'axios'
 import {useAlert} from 'react-alert'
 
@@ -16,7 +16,6 @@ export default function YourItems() {
 			withCredentials:true
 		})
 		.then(res=>{
-			console.log(res.data)
 			if(res.status){
 				setItems(res.data.items)
 			}
@@ -31,14 +30,14 @@ export default function YourItems() {
 	},[])
 
 	return (
-		<Layout>
+		<Layout container>
 			<div className='your-items'>
 				<h1>Your Items</h1>
 					{(items.length==0)?(<p>Looks like you havent added any items. Want to <a href="">Add an Item?</a></p>):
 					(
-						<div className="card-container">
+						<CardContainer>
 							{items.map(item=><Card item={item}/>)}
-						</div>	
+						</CardContainer>
 					)}
 			</div>
 		</Layout>

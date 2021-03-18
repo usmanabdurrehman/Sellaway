@@ -5,6 +5,7 @@
 	position: relative;
 	transition: 0.6s;
 	cursor: pointer;
+	background-color: white;
 }
 
 .card:hover{

@@ -1,8 +1,10 @@
 import React,{useRef,useEffect,useState} from 'react'
-import './Navbar.css'
 import SearchIcon from '@material-ui/icons/Search';
+import {Container} from '../'
 import {IconButton} from '@material-ui/core'
-import {Redirect} from 'react-router-dom'
+import {Redirect,Link} from 'react-router-dom'
+import Cookies from 'js-cookie'
+import './Navbar.css'
 
 export default function Navbar() {
 
@@ -22,26 +24,26 @@ export default function Navbar() {
 
 	return (
 		<div className='navbar'>
-			<div className='container navWrapper'>
-				<div className='logo'><h2>Sellaway</h2></div>
+			<Container className='navWrapper'>
+				<div className='logo'><h2><Link to='/'>Sellaway</Link></h2></div>
 				<div ref={inputWrapperRef} className='searchWrapper'>
 					<input ref={inputRef} placeholder='Search...' className='search' type="text"/>
-					{/* <div className='search-icon-wrapper'> */}
 					<IconButton className='search-icon'>
 						<SearchIcon/>
 					</IconButton>
 					{/* </div> */}
 				</div>
 			 	<div className='nav'>
-			 		<div>Categories</div>
-			 		<div>Contact Us</div>
+			 		<div><Link to='/addItem'>Add An Item</Link></div>
+			 		<div><Link to='/favItems'>Favourite Items</Link></div>
+			 		<div><Link to='/yourItems'>Your Items</Link></div>
 			 		<div className='logout' 
 			 		onClick={e=>{
-			 			localStorage.removeItem('token')
+			 			Cookies.remove('token')
 			 			setRedirect(true)
 			 		}}>Logout</div>
 			 	</div>
-			</div>
+			</Container>
 			{(redirect)?(<Redirect to='/signin'/>):null}
 		</div>
 	)

@@ -16,6 +16,10 @@
 	display: flex;
 }
 
+.navbar .nav>div{
+	cursor: pointer;
+}
+
 .navbar .nav>div+div{
 	margin-left:20px;
 }
@@ -49,4 +53,9 @@
 
 .navbar .logout{
 	cursor: pointer;
+}
+
+.navbar a{
+	text-decoration: none;
+	color:white;
 }

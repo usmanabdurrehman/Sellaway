@@ -1,10 +1,11 @@
 import React from 'react'
+import Container from '../Container/Container'
 import './Footer1.css'
 
 export default function Footer1() {
 	return (
 		<div className='footer1'>
-			<div className='container footer1grid'>
+			<Container className='footer1grid'>
 				<div>
 					<div>Cars</div>
 					<div>Flats for rent</div>
@@ -31,7 +32,7 @@ export default function Footer1() {
 					<div>Sitemap</div>
 					<div>Legal & Privacy Information</div>
 				</div>
-			</div>
+			</Container>
 		</div>
 	)
 }

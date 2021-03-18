@@ -1,9 +1,10 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import Cookies from 'js-cookie'
 
 const PublicRoute = ({component: Component, ...rest}) => {
 
-	let token = localStorage.getItem('token')?true:false
+	let token = Cookies.get('token')?true:false
 
     return (
         <Route {...rest} render={props => (

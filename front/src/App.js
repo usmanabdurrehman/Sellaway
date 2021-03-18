@@ -1,13 +1,7 @@
 import React from 'react'
-import Signup from './Pages/Forms/Signup'
-import Signin from './Pages/Forms/Signin'
-import Home from './Pages/Home/Home'
-import AddItem from './Pages/AddItem/AddItem'
-import EditItem from './Pages/EditItem/EditItem'
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic'
-import YourItems from './Pages/YourItems/YourItems'
-import FavItems from './Pages/FavItems/FavItems'
+import {AddItem,EditItem,FavItems,YourItems,Home,Signin,Signup} from './Pages'
 
 import {BrowserRouter as Router,Route} from 'react-router-dom'
 import axios from 'axios'
@@ -24,13 +18,6 @@ const options = {
   transition: transitions.SCALE
 }
 
-let token = (localStorage.getItem('token'))?(JSON.parse(localStorage.getItem('token'))):(null)
-if (token) {
-  axios.defaults.headers.common['Authorization'] = token
-} else {
-  delete axios.defaults.headers.common['Authorization']
-}
-
 export default function App() {
 
   return (
@@ -39,12 +26,12 @@ export default function App() {
         <Route path='/signup' component={Signup}/>
         <Route path='/signin' component={Signin}/>
 
-        <Route path='/' exact component={Home}/>
-        <Route path='/yourItems' component={YourItems}/>
-        <Route path='/favItems' component={FavItems}/>
+        <PrivateRoute path='/' exact component={Home}/>
+        <PrivateRoute path='/yourItems' component={YourItems}/>
+        <PrivateRoute path='/favItems' component={FavItems}/>
         
-        <Route path='/addItem' component={AddItem}/>
-        <Route path='/editItem' component={EditItem}/>
+        <PrivateRoute path='/addItem' component={AddItem}/>
+        <PrivateRoute path='/editItem' component={EditItem}/>
       </Router>
     </AlertProvider>
   )

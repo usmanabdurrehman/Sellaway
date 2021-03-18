@@ -2,13 +2,28 @@ let router = require('express').Router()
 let User = require('../Models/User')
 let Item = require('../Models/Item')
 let bcrypt = require('bcryptjs')
+let admin = require('../config/firebase')
+let multer = require('multer')
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/itemImages')
+  },
+  filename: function (req, file, cb) {
+  	let [filename,ext] = file.originalname.split('.')
+  	req.filename = `${req.user.email}-${filename}-${Date.now()}.${ext}`
+    cb(null, req.filename)
+  }
+})
+ 
+var upload = multer({ storage: storage })
 
 // tested
 router.get('/getInitialItems',(req,res)=>{
 
-	let email = 'selena@gmail.com'
+	let email = req.user.email
 
-	Item.find().limit(20).lean()
+	Item.find().limit(20).sort({createdAt:-1}).lean()
 	.then(items=>{
 		items.forEach(item=>{item.favedByUser = item.favourites.includes(email)?true:false})
 		res.send({items,status:true})
@@ -23,9 +38,9 @@ router.get('/getInitialItems',(req,res)=>{
 
 router.get('/favouriteItems',(req,res)=>{
 
-	let email = 'selena@gmail.com'
+	let email = req.user.email
 
-	Item.find().lean()
+	Item.find().sort({createdAt:-1}).lean()
 	.then(items=>{
 		let favItems = items.filter(item=>item.favourites.includes(email))
 		favItems.forEach(item=>{item.favedByUser = item.favourites.includes(email)?true:false})
@@ -44,9 +59,9 @@ router.get('/favouriteItems',(req,res)=>{
 
 
 router.get('/yourItems',(req,res)=>{
-	let email = 'selena@gmail.com'
+	let email = req.user.email
 
-	Item.find({email}).lean()
+	Item.find({email}).sort({createdAt:-1}).lean()
 	.then(items=>{
 		items.forEach(item=>{item.favedByUser = item.favourites.includes(email)?true:false})
 		res.send({
@@ -63,8 +78,9 @@ router.get('/yourItems',(req,res)=>{
 })
 
 //tested
-router.post('/addItem',(req,res)=>{
+router.post('/addItem',upload.any(),(req,res)=>{
 	let {name,location,category,price,featured} = req.body
+	let email = req.user.email
 
 	let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul'
 	,'Aug','Sep','Oct','Nov','Dec']
@@ -79,8 +95,8 @@ router.post('/addItem',(req,res)=>{
 		price,
 		featured,
 		date,
-		filename:'hmn.jpg',
-		email:'email'
+		filename:req.filename,
+		email
 	})
 
 	newItem.save()
@@ -98,7 +114,7 @@ router.post('/addItem',(req,res)=>{
 	})
 })
 
-router.post('/updateItem',(req,res)=>{
+router.post('/updateItem',upload.any(),(req,res)=>{
 	let {id,name,location,category,price,featured} = req.body
 
 	let updatedItem = {
@@ -107,7 +123,7 @@ router.post('/updateItem',(req,res)=>{
 		category,
 		price,
 		featured,
-		filename:'hmn.jpg'
+		filename:req.filename
 	}
 
 	Item.findByIdAndUpdate(id,updatedItem)
@@ -147,7 +163,7 @@ router.post('/deleteItem',(req,res)=>{
 //tested
 router.post('/addFavourite',(req,res)=>{
 	let {id} = req.body
-	let email = 'email'
+	let email = req.user.email
 
 	Item.findById(id).lean()
 	.then(item=>{
@@ -171,7 +187,7 @@ router.post('/addFavourite',(req,res)=>{
 //tested
 router.post('/removeFavourite',(req,res)=>{
 	let {id} = req.body
-	let email = 'email'
+	let email = req.user.email
 
 	Item.findById(id).lean()
 	.then(item=>{

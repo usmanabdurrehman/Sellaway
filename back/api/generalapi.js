@@ -10,7 +10,6 @@ router.post('/signin',(req,res)=>{
 	.then(user=>{
 		if(bcrypt.compareSync(pwd, user.pwd)){
 			jwt.sign(user,'secret',(err,token)=>{
-				console.log('yay')
 				res.send({auth:true,user,token})
 			})
 		}

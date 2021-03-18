@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import './Home.css'
-import Layout from '../../Layout/Layout'
-import Card from '../../components/Card/Card'
+import {Layout} from '../../Layout'
+import {Card,CardContainer,Container} from '../../Components'
 import {useAlert} from 'react-alert'
 import axios from 'axios'
 
@@ -16,7 +16,6 @@ export default function Home() {
 			withCredentials:true
 		})
 		.then(res=>{
-			console.log(res.data.items)
 			if(res.status){
 				setItems(res.data.items)
 			}
@@ -32,9 +31,19 @@ export default function Home() {
 
 	return (
 		<Layout>
-			<div className='card-container'>
-				{items.map(item=><Card item={item}/>)}
+			<div className='hero-wrapper'>
+				<Container className='vertical-align-center'>
+					<h1>Your all in one stop for selling used items</h1>
+					<p>Not registered to the site?</p> 
+					<p><a>Sign up</a> now and get an exclusive discount of 10$ on 
+					your first purchase or sale.</p>
+				</Container>
 			</div>
+			<Container>
+				<CardContainer>
+					{items.map(item=><Card item={item}/>)}
+				</CardContainer>
+			</Container>
 		</Layout>
 	)
 }
