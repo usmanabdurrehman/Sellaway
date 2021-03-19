@@ -5,10 +5,13 @@ import {Card,CardContainer,Container} from '../../Components'
 import {useAlert} from 'react-alert'
 import axios from 'axios'
 
+import {useDispatch,useSelector} from 'react-redux'
+
 export default function Home() {
 
-	const [items, setItems] = useState([])
+	const items = useSelector((state)=>state.items)
 	let alert = useAlert()
+	let dispatch = useDispatch()
 
 	let getItems = () => {
 		axios({
@@ -17,7 +20,7 @@ export default function Home() {
 		})
 		.then(res=>{
 			if(res.status){
-				setItems(res.data.items)
+				dispatch({type:'SET_ITEMS',payload:res.data.items})
 			}
 			else{
 				alert.error(res.data.msg)

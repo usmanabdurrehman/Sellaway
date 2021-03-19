@@ -4,11 +4,13 @@ import {Layout} from '../../Layout'
 import {Card,CardContainer} from '../../Components'
 import axios from 'axios'
 import {useAlert} from 'react-alert'
+import {useDispatch,useSelector} from 'react-redux'
 
 export default function YourItems() {
 
-	const [items, setItems] = useState([])
+	const items = useSelector((state)=>state.items)
 	let alert = useAlert()
+	let dispatch = useDispatch()
 
 	let getItems = () => {
 		axios({
@@ -17,7 +19,7 @@ export default function YourItems() {
 		})
 		.then(res=>{
 			if(res.status){
-				setItems(res.data.items)
+				dispatch({type:'SET_ITEMS',payload:res.data.items})
 			}
 			else{
 				alert.error(res.data.msg)
@@ -36,7 +38,7 @@ export default function YourItems() {
 					{(items.length==0)?(<p>Looks like you havent added any items. Want to <a href="">Add an Item?</a></p>):
 					(
 						<CardContainer>
-							{items.map(item=><Card page='self' item={item}/>)}
+							{items.map(item=><Card page='self' item={item} key={item._id}/>)}
 						</CardContainer>
 					)}
 			</div>

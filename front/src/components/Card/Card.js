@@ -13,12 +13,15 @@ import styles from "./Card.module.css";
 
 import {useAlert} from 'react-alert'
 
+import {useDispatch,useSelector} from 'react-redux'
+
 export default function Card({
 	item: { _id, name, price, location, date, favedByUser, filename },
 	page,
 }) {
 
 	let alert = useAlert()
+	let dispatch = useDispatch()
 
 	let favItem = () => {
 		axios({
@@ -26,7 +29,11 @@ export default function Card({
 			url: "/user/addFavourite",
 			withCredentials: true,
 			data: { id: _id },
-		}).then((res) => {});
+		}).then((res) => {
+			if(res.data.status){
+				dispatch({type:'ADD_FAV',payload:{id:_id}})
+			}
+		});
 	};
 
 	let unfavItem = () => {
@@ -35,7 +42,11 @@ export default function Card({
 			url: "/user/removeFavourite",
 			withCredentials: true,
 			data: { id: _id },
-		}).then((res) => {});
+		}).then((res) => {
+			if(res.data.status){
+				dispatch({type:'REMOVE_FAV',payload:{id:_id}})
+			}
+		});
 	};
 
 	let deleteItem = () => {
@@ -46,6 +57,7 @@ export default function Card({
 			data: { id: _id },
 		}).then((res) => {
 			if(res.data.status){
+				dispatch({type:'DELETE_ITEM',payload:{id:_id}})
 				alert.success('Item successfully deleted')
 			}
 			else{

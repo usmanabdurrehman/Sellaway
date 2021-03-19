@@ -134,7 +134,7 @@ router.post('/addItem',upload.any(),(req,res)=>{
 })
 
 router.post('/updateItem',upload.any(),(req,res)=>{
-	let {id,name,location,category,price,featured} = req.body
+	let {id,name,location,category,price,featured,filename} = req.body
 
 	let updatedItem = {
 		name,
@@ -142,7 +142,7 @@ router.post('/updateItem',upload.any(),(req,res)=>{
 		category,
 		price,
 		featured,
-		filename:req.filename
+		filename:req.filename || filename
 	}
 
 	Item.findByIdAndUpdate(id,updatedItem)
