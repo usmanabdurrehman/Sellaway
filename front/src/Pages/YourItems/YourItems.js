@@ -36,7 +36,7 @@ export default function YourItems() {
 					{(items.length==0)?(<p>Looks like you havent added any items. Want to <a href="">Add an Item?</a></p>):
 					(
 						<CardContainer>
-							{items.map(item=><Card item={item}/>)}
+							{items.map(item=><Card page='self' item={item}/>)}
 						</CardContainer>
 					)}
 			</div>

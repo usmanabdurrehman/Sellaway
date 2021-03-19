@@ -37,8 +37,9 @@ export default function AddItem() {
 
 	const [cat, setCat] = React.useState("mobiles and accessories");
 
-	const handleChange = (event) => {
-		setCat(event.target.value);
+	const handleChange = (e) => {
+		setCat(e.target.value);
+		setFields({...fields,category:e.target.value})
 	};
 
 	let alert = useAlert();

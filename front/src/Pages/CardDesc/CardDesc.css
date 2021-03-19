@@ -39,21 +39,22 @@
 }
 
 .card-desc .card-desc-fields{
+	padding:20px;
 	display: flex;
-	align-items: center;
-	padding:0 50px;
+	flex-direction: column;
 }
 
 .card-desc .card-desc-fields h1{
 	font-size: 48px;
 }
 
-.card-desc .card-desc-fields>div{
+.card-desc .card-other-desc{
+	flex:1;
 	display: flex;
+	justify-content: center;
 	flex-direction: column;
-	align-items: flex-start;
-	width:60%;
 }
+
 
 .card-desc .form-input{
 	margin:5px 0 !important;

@@ -7,13 +7,19 @@ import IconButton from "@material-ui/core/IconButton";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
+import StarIcon from '@material-ui/icons/Star';
 
 import styles from "./Card.module.css";
+
+import {useAlert} from 'react-alert'
 
 export default function Card({
 	item: { _id, name, price, location, date, favedByUser, filename },
 	page,
 }) {
+
+	let alert = useAlert()
+
 	let favItem = () => {
 		axios({
 			method: "post",
@@ -31,6 +37,22 @@ export default function Card({
 			data: { id: _id },
 		}).then((res) => {});
 	};
+
+	let deleteItem = () => {
+		axios({
+			method: "post",
+			url: "/user/deleteItem",
+			withCredentials: true,
+			data: { id: _id },
+		}).then((res) => {
+			if(res.data.status){
+				alert.success('Item successfully deleted')
+			}
+			else{
+				alert.error(res.data.msg)
+			}
+		});
+	}
 
 	return (
 		<div className={styles.card}>
@@ -54,20 +76,7 @@ export default function Card({
 				</div>
 
 				<Link
-					to={{
-						pathname: "/cardDescription",
-						state: {
-							item: {
-								_id,
-								name,
-								price,
-								location,
-								date,
-								favedByUser,
-								filename,
-							},
-						},
-					}}
+					to={`/item/${_id}`}
 				>
 					<IconButton className={`${styles.icon} ${styles.arrow}`}>
 						<ArrowForwardIcon />
@@ -78,7 +87,7 @@ export default function Card({
 				className={`${styles.icon} ${styles.heart}`}
 				onClick={favedByUser ? unfavItem : favItem}
 			>
-				<FavoriteIcon style={{ color: favedByUser ? "red" : "#ccc" }} />
+				<StarIcon style={{ color: favedByUser ? "#ffd700" : "#ccc" }} />
 			</IconButton>
 			{page == "self" ? (
 				<>
@@ -102,8 +111,8 @@ export default function Card({
 							<EditIcon />
 						</IconButton>
 					</Link>
-					<IconButton className={`${styles.icon} ${styles.delete}`}>
-						<DeleteIcon />
+					<IconButton className={`${styles.icon} ${styles.delete}`} onClick={deleteItem}>
+						<DeleteIcon className={styles.deleteIcon}/>
 					</IconButton>
 				</>
 			) : null}

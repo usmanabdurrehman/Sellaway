@@ -32,7 +32,7 @@ export default function App() {
         
         <PrivateRoute path='/addItem' component={AddItem}/>
         <PrivateRoute path='/editItem' component={EditItem}/>
-        <PrivateRoute path='/cardDescription' component={CardDesc}/>
+        <PrivateRoute path='/item/:id' component={CardDesc}/>
       </Router>
     </AlertProvider>
   )

@@ -36,6 +36,25 @@ router.get('/getInitialItems',(req,res)=>{
 	})
 })
 
+router.post('/getItem',(req,res)=>{
+
+	let email = req.user.email
+	let id = req.body.id
+
+	Item.findById(id).lean()
+	.then(item=>{
+		item.favedByUser = item.favourites.includes(email) ? true : false
+		console.log(item)
+		res.send({item,status:true})
+	})
+	.catch(err=>{
+		res.send({
+			status:false,
+			msg:'Some unexpected error occured'
+		})
+	})
+})
+
 router.get('/favouriteItems',(req,res)=>{
 
 	let email = req.user.email

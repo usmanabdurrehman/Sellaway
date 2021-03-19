@@ -68,3 +68,7 @@
 	top:78px;
 	right:5px;
 }
+
+.card .deleteIcon{
+	color:red;
+}
