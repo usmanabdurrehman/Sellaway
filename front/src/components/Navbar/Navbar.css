@@ -3,6 +3,7 @@
 	height: 70px;
 	font-size: 14px;
 	color: white;
+	position: relative;
 }
 
 .navbar .navWrapper{
@@ -31,4 +32,57 @@
 .navbar a{
 	text-decoration: none;
 	color:white;
+}
+
+.navbar .hamburger{
+	display: none;
+}
+
+.navbar .hamburger:hover{
+	background-color: #444;
+}
+
+.navbar .menu-icon{
+	color:white;
+}
+
+.navbar .sidebar{
+	width:200px;
+	height:calc(100vh - 70px);
+	position: absolute;
+	top:70px;
+	right:0;
+	display: none;
+	align-items: center;
+	flex-direction: column;
+	background-color: var(--3rd);
+	transform:translateX(250px);
+	transition:0.4s;
+}
+
+.navbar .sidebarOpen{
+	transform:translateX(0);
+}
+
+.navbar .sidebar>div{
+	margin-top:25px;
+}
+
+@media (max-width: 768px){
+	.navbar .nav{
+		display: none;
+	}
+	.navbar .hamburger{
+		display: block;
+	}
+
+	.navbar .sidebar{
+		display: flex;
+	}
+}
+
+@media (max-width: 436px){
+	.nav-search{
+		display: none;
+	}
 }

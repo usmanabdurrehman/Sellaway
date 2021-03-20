@@ -1,6 +1,7 @@
 .searchWrapper{
 	width:200px;
 	display: flex;
+	align-items: center;
 	background-color: white;
 	height:50px;
 	border-radius: 30px;
@@ -15,16 +16,18 @@
 	box-sizing: border-box;
 	font-size: 14px;
 	min-width: 0;
+	flex:1;
 }
 
 .search:focus {
     outline: none;
 }
 
-.search-icon{
-	margin-left: 10px;
+#search-icon{
+	cursor: pointer;
+	margin-left:10px;
 }
 
 .onfocuswrapper{
-	width:250px;
+	width:220px;
 }

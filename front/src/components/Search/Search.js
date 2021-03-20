@@ -4,7 +4,7 @@ import {IconButton} from '@material-ui/core'
 
 import './Search.css'
 
-export default function Search() {
+export default function Search(props) {
 	let inputRef = useRef(null);
 	let inputWrapperRef = useRef(null);
 
@@ -18,6 +18,7 @@ export default function Search() {
 	}, []);
 
 	return (
+	<div {...props}>
 		<div ref={inputWrapperRef} className="searchWrapper">
 			<input
 				ref={inputRef}
@@ -25,10 +26,10 @@ export default function Search() {
 				className="search"
 				type="text"
 			/>
-			<IconButton className="search-icon">
-				<SearchIcon />
-			</IconButton>
-			{/* </div> */}
+			<IconButton id='search-icon'>
+				<SearchIcon/>
+			</IconButton>	
 		</div>
+	</div>	
 	);
 }
