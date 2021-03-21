@@ -21,8 +21,17 @@
 	cursor: pointer;
 }
 
+.navbar .nav>div>a{
+	display: flex;
+	align-items: center;
+}
+
+.navbar .nav>div>a>p{
+	margin-left:5px;
+}
+
 .navbar .nav>div+div{
-	margin-left:20px;
+	margin-left:30px;
 }
 
 .navbar .logout{
@@ -66,6 +75,12 @@
 
 .navbar .sidebar>div{
 	margin-top:25px;
+}
+
+.navbar .profileImage{
+	width:24px;
+	height:24px;
+	border-radius: 50%;
 }
 
 @media (max-width: 768px){

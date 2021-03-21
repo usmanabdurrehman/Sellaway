@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import {Layout} from "../../Layout";
+import {InputSelect} from '../../Components'
 import { TextField, Button, Switch, MenuItem } from "@material-ui/core";
 import "./AddItem.css";
 import axios from "axios";
 import { useAlert } from "react-alert";
 
-const options = [
+const catOptions = [
 	{
 		value: "mobiles and accessories",
 		label: "Mobiles and Accessories",
@@ -35,7 +36,7 @@ export default function AddItem() {
 		imgUrl: null,
 	});
 
-	const [cat, setCat] = React.useState("mobiles and accessories");
+	const [cat, setCat] = useState("mobiles and accessories");
 
 	const handleChange = (e) => {
 		setCat(e.target.value);
@@ -50,6 +51,7 @@ export default function AddItem() {
 			setFields({ ...fields, image: e.target.files[0], imgUrl });
 		}
 	};
+
 
 	let clickHandler = () => {
 		let formdata = new FormData();
@@ -146,7 +148,7 @@ export default function AddItem() {
 							className="form-input"
 							id="standard-select-currency"
 						>
-							{options.map((option) => (
+							{catOptions.map((option) => (
 								<MenuItem
 									key={option.value}
 									value={option.value}

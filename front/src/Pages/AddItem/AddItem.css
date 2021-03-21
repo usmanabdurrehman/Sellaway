@@ -46,6 +46,7 @@
 
 .add-item .form-input{
 	margin:5px 0 !important;
+	width:100%;
 }
 
 .add-item .form-button{

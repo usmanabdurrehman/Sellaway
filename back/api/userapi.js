@@ -11,7 +11,7 @@ var storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
   	let [filename,ext] = file.originalname.split('.')
-  	req.filename = `${req.user.email}-${filename}-${Date.now()}.${ext}`
+  	req.filename = `${req.body.email}-${filename}-${Date.now()}.${ext}`
     cb(null, req.filename)
   }
 })
@@ -44,7 +44,6 @@ router.post('/getItem',(req,res)=>{
 	Item.findById(id).lean()
 	.then(item=>{
 		item.favedByUser = item.favourites.includes(email) ? true : false
-		console.log(item)
 		res.send({item,status:true})
 	})
 	.catch(err=>{

@@ -16,7 +16,7 @@ import {useAlert} from 'react-alert'
 import {useDispatch,useSelector} from 'react-redux'
 
 export default function Card({
-	item: { _id, name, price, location, date, favedByUser, filename },
+	item: { _id, name, price, location, date, favedByUser, filename, category },
 	page,
 }) {
 
@@ -31,6 +31,7 @@ export default function Card({
 			data: { id: _id },
 		}).then((res) => {
 			if(res.data.status){
+				new Audio('sounds/fav.mp3').play()
 				dispatch({type:'ADD_FAV',payload:{id:_id}})
 			}
 		});
@@ -44,6 +45,7 @@ export default function Card({
 			data: { id: _id },
 		}).then((res) => {
 			if(res.data.status){
+				new Audio('sounds/fav.mp3').play()
 				dispatch({type:'REMOVE_FAV',payload:{id:_id}})
 			}
 		});
@@ -57,6 +59,7 @@ export default function Card({
 			data: { id: _id },
 		}).then((res) => {
 			if(res.data.status){
+				new Audio('sounds/delete.mp3').play()
 				dispatch({type:'DELETE_ITEM',payload:{id:_id}})
 				alert.success('Item successfully deleted')
 			}
@@ -89,8 +92,9 @@ export default function Card({
 
 				<Link
 					to={`/item/${_id}`}
+					className={`${styles.icon} ${styles.arrow}`}
 				>
-					<IconButton className={`${styles.icon} ${styles.arrow}`}>
+					<IconButton>
 						<ArrowForwardIcon />
 					</IconButton>
 				</Link>
@@ -113,6 +117,7 @@ export default function Card({
 									price,
 									location,
 									date,
+									category,
 									favedByUser,
 									filename,
 								},
