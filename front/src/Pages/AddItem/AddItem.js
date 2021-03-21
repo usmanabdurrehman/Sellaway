@@ -29,7 +29,7 @@ export default function AddItem() {
 	let [fields, setFields] = useState({
 		name: "",
 		location: "",
-		category: "",
+		category: "mobiles and accessories",
 		price: 0,
 		featured: true,
 		image: null,

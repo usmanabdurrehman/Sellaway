@@ -69,6 +69,27 @@ export default function Card({
 		});
 	}
 
+	let getCategoryColor = (category) => {
+		switch(category){
+			case "mobiles and accessories":
+				return "#78BC61"
+				break
+			case "miscellaneous":
+				return "#F22B29"
+				break
+			case "furniture":
+				return "#3F88C5"
+				break
+			case "vehicle":
+				return "#5D2E8C"
+				break
+			default:
+				return "blue"
+				break				
+
+		}
+	}
+
 	return (
 		<div className={styles.card}>
 			<div className={styles.cardImg}>
@@ -76,6 +97,7 @@ export default function Card({
 					src={`http://localhost:7000/itemImages/${filename}`}
 					alt=""
 				/>
+				<p className={styles.category} style={{backgroundColor:getCategoryColor(category)}}>{category}</p>
 			</div>
 			<div className={styles.cardDesc}>
 				<div className={styles.cardName}>

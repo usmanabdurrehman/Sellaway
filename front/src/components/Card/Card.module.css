@@ -17,6 +17,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	position: relative;
 }
 
 .card img{
@@ -70,4 +71,18 @@
 
 .card .deleteIcon{
 	color:red;
+}
+
+.card .category{
+	position: absolute;
+	top:50%;
+	transform:translateY(-50%);
+	left:0;
+	background-color: blue;
+	color:white;
+	padding:2px;
+	font-size: 14px;
+	border-radius: 5px;
+	writing-mode:vertical-rl; 
+	text-align: center;
 }
