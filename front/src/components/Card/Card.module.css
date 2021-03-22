@@ -75,14 +75,12 @@
 
 .card .category{
 	position: absolute;
-	top:50%;
-	transform:translateY(-50%);
+	top:0;
 	left:0;
 	background-color: blue;
 	color:white;
-	padding:2px;
+	padding:4px;
 	font-size: 14px;
 	border-radius: 5px;
-	writing-mode:vertical-rl; 
 	text-align: center;
 }

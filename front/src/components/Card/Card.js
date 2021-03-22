@@ -47,6 +47,7 @@ export default function Card({
 			if(res.data.status){
 				new Audio('sounds/fav.mp3').play()
 				dispatch({type:'REMOVE_FAV',payload:{id:_id}})
+				dispatch({type:'REMOVE_FROM_FAV_ITEM',payload:{id:_id}})
 			}
 		});
 	};

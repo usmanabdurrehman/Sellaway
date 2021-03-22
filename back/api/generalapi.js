@@ -25,6 +25,7 @@ router.post('/signin',(req,res)=>{
 	User.findOne({email}).lean()
 	.then(user=>{
 		if(bcrypt.compareSync(pwd, user.pwd)){
+			delete user.pwd
 			jwt.sign(user,'secret',(err,token)=>{
 				res.send({auth:true,user,token})
 			})

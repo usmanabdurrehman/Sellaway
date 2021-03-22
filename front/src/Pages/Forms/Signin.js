@@ -36,7 +36,6 @@ export default function Signin(props) {
 		.then(res=>{
 			let {token,auth,user} = res.data
 			if(auth==true){
-				console.log(token)
 				Cookies.set('token', JSON.stringify(token));
 				dispatch({type:'SET_USER',payload:user})
 				setRedirect(true)

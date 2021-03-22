@@ -6,8 +6,7 @@ import {AddItem,EditItem,FavItems,Profile,Home,Signin,Signup,CardDesc} from './P
 import {BrowserRouter as Router,Route} from 'react-router-dom'
 import axios from 'axios'
 
-import PrivateRoute from './Routes/PrivateRoute'
-import PublicRoute from './Routes/PublicRoute'
+import {PrivateRoute,PublicRoute} from './Routes'
 
 const options = {
   // you can also just use 'bottom center'
@@ -26,13 +25,13 @@ export default function App() {
         <Route path='/signup' component={Signup}/>
         <Route path='/signin' component={Signin}/>
 
-        <PrivateRoute path='/' exact component={Home}/>
-        <PrivateRoute path='/profile' component={Profile}/>
-        <PrivateRoute path='/favItems' component={FavItems}/>
+        <Route path='/' exact component={Home}/>
+        <Route path='/profile' component={Profile}/>
+        <Route path='/favItems' component={FavItems}/>
         
-        <PrivateRoute path='/addItem' component={AddItem}/>
-        <PrivateRoute path='/editItem' component={EditItem}/>
-        <PrivateRoute path='/item/:id' component={CardDesc}/>
+        <Route path='/addItem' component={AddItem}/>
+        <Route path='/editItem' component={EditItem}/>
+        <Route path='/item/:id' component={CardDesc}/>
       </Router>
     </AlertProvider>
   )

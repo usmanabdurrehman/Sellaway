@@ -9,7 +9,7 @@ import {useDispatch,useSelector} from 'react-redux'
 
 export default function FavItems() {
 
-	const items = useSelector((state)=>state.items)
+	const items = useSelector((state)=>state.favItems)
 	let alert = useAlert()
 	let dispatch = useDispatch()
 
@@ -20,7 +20,7 @@ export default function FavItems() {
 		})
 		.then(res=>{
 			if(res.status){
-				dispatch({type:'SET_ITEMS',payload:res.data.items})
+				dispatch({type:'SET_FAV_ITEMS',payload:res.data.items})
 			}
 			else{
 				alert.error(res.data.msg)
