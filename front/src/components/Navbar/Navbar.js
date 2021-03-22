@@ -44,12 +44,12 @@ export default function Navbar() {
 				<div className="nav">
 					<div>
 						<Link to="/addItem">
-							<AddIcon /> <p>Add An Item</p>
+							<AddIcon style={{color:'#008ecc'}}/> <p>Add An Item</p>
 						</Link>
 					</div>
 					<div>
 						<Link to="/favItems">
-							<StarIcon /> <p>Favourite Items</p>
+							<StarIcon style={{color:'#ffd700'}}/> <p>Favourite Items</p>
 						</Link>
 					</div>
 					<div>
@@ -88,12 +88,12 @@ export default function Navbar() {
 				<div>
 					<div>
 						<Link to="/addItem">
-							<AddIcon /> <p>Add An Item</p>
+							<AddIcon style={{color:'#008ecc'}}/> <p>Add An Item</p>
 						</Link>
 					</div>
 					<div>
 						<Link to="/favItems">
-							<StarIcon /> <p>Fav Items</p>
+							<StarIcon style={{color:'#ffd700'}}/> <p>Fav Items</p>
 						</Link>
 					</div>
 					<div>

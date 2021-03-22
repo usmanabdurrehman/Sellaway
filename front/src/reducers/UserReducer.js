@@ -5,6 +5,7 @@ let UserReducer = (state = JSON.parse(localStorage.getItem('user')) ?? {}, actio
 			return action.payload;
 			break;
 		case "LOGOUT":	
+			localStorage.removeItem('user')
 			return {};
 			break;
 		default:
