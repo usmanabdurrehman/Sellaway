@@ -37,7 +37,7 @@
 	font-size: 48px;
 }
 
-.add-item .form-fields>div{
+.add-item .form-fields>div>div{
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -112,4 +112,18 @@
 .add-item .image-wrapper:hover .absolute{
 	visibility: visible;
 	opacity: 1;
+}
+
+@media (max-width: 845px){
+	.add-item .form-fields>div>div{
+		width:100%;
+	}	
+}
+
+@media (max-width: 600px){
+	.add-item{
+		display:block;
+		height: auto;
+		padding:30px 0 20px 0;
+	}	
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import {Layout} from "../../Layout";
-import {InputSelect} from '../../Components'
+import { Layout } from "../../Layout";
+import { InputSelect } from "../../Components";
 import { TextField, Button, Switch, MenuItem } from "@material-ui/core";
 import "./AddItem.css";
 import axios from "axios";
@@ -40,7 +40,7 @@ export default function AddItem() {
 
 	const handleChange = (e) => {
 		setCat(e.target.value);
-		setFields({...fields,category:e.target.value})
+		setFields({ ...fields, category: e.target.value });
 	};
 
 	let alert = useAlert();
@@ -51,7 +51,6 @@ export default function AddItem() {
 			setFields({ ...fields, image: e.target.files[0], imgUrl });
 		}
 	};
-
 
 	let clickHandler = () => {
 		let formdata = new FormData();
@@ -101,7 +100,7 @@ export default function AddItem() {
 						</div>
 					) : (
 						<div className="image-wrapper">
-							<img className='imageDisplay' src={fields.imgUrl} />
+							<img className="imageDisplay" src={fields.imgUrl} />
 							<div className="absolute file-wrapper">
 								<input
 									type="file"
@@ -118,78 +117,86 @@ export default function AddItem() {
 				<div className="form-fields">
 					<div>
 						<h1>Add Item</h1>
-						<TextField
-							onChange={(e) =>
-								setFields({ ...fields, name: e.target.value })
-							}
-							value={fields.name}
-							label="Name"
-							className="form-input"
-							fullWidth
-						/>
-						<TextField
-							onChange={(e) =>
-								setFields({
-									...fields,
-									location: e.target.value,
-								})
-							}
-							value={fields.location}
-							label="Location"
-							className="form-input"
-							fullWidth
-						/>
-						<TextField
-							select
-							label="Category"
-							value={cat}
-							onChange={handleChange}
-							fullWidth
-							className="form-input"
-							id="standard-select-currency"
-						>
-							{catOptions.map((option) => (
-								<MenuItem
-									key={option.value}
-									value={option.value}
-								>
-									{option.label}
-								</MenuItem>
-							))}
-						</TextField>
-						<TextField
-							onChange={(e) =>
-								setFields({
-									...fields,
-									price: parseInt(e.target.value),
-								})
-							}
-							value={fields.price}
-							label="Price"
-							className="form-input"
-							type="number"
-							fullWidth
-						/>
-						<div className="switch-wrapper">
-							<Switch
-								checked={fields.featured}
+						<div>
+							<TextField
 								onChange={(e) =>
 									setFields({
 										...fields,
-										featured: !fields.featured,
+										name: e.target.value,
 									})
 								}
-								color="primary"
-								inputProps={{
-									"aria-label": "primary checkbox",
-								}}
-								className="switch"
+								value={fields.name}
+								label="Name"
+								className="form-input"
+								fullWidth
 							/>
-							<div>Featured</div>
+							<TextField
+								onChange={(e) =>
+									setFields({
+										...fields,
+										location: e.target.value,
+									})
+								}
+								value={fields.location}
+								label="Location"
+								className="form-input"
+								fullWidth
+							/>
+							<TextField
+								select
+								label="Category"
+								value={cat}
+								onChange={handleChange}
+								fullWidth
+								className="form-input"
+								id="standard-select-currency"
+							>
+								{catOptions.map((option) => (
+									<MenuItem
+										key={option.value}
+										value={option.value}
+									>
+										{option.label}
+									</MenuItem>
+								))}
+							</TextField>
+							<TextField
+								onChange={(e) =>
+									setFields({
+										...fields,
+										price: parseInt(e.target.value),
+									})
+								}
+								value={fields.price}
+								label="Price"
+								className="form-input"
+								type="number"
+								fullWidth
+							/>
+							<div className="switch-wrapper">
+								<Switch
+									checked={fields.featured}
+									onChange={(e) =>
+										setFields({
+											...fields,
+											featured: !fields.featured,
+										})
+									}
+									color="primary"
+									inputProps={{
+										"aria-label": "primary checkbox",
+									}}
+									className="switch"
+								/>
+								<div>Featured</div>
+							</div>
+							<Button
+								onClick={clickHandler}
+								className="form-button"
+							>
+								Add Item
+							</Button>
 						</div>
-						<Button onClick={clickHandler} className="form-button">
-							Add Item
-						</Button>
 					</div>
 				</div>
 			</div>

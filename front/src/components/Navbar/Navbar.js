@@ -8,8 +8,8 @@ import MenuIcon from "@material-ui/icons/Menu";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import StarIcon from '@material-ui/icons/Star';
-import AddIcon from '@material-ui/icons/Add';
+import StarIcon from "@material-ui/icons/Star";
+import AddIcon from "@material-ui/icons/Add";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -43,10 +43,14 @@ export default function Navbar() {
 				<Search className="nav-search" />
 				<div className="nav">
 					<div>
-						<Link to="/addItem"><AddIcon/> <p>Add An Item</p></Link>
+						<Link to="/addItem">
+							<AddIcon /> <p>Add An Item</p>
+						</Link>
 					</div>
 					<div>
-						<Link to="/favItems"><StarIcon/> <p>Favourite Items</p></Link>
+						<Link to="/favItems">
+							<StarIcon /> <p>Favourite Items</p>
+						</Link>
 					</div>
 					<div>
 						<Link to="/profile">
@@ -82,34 +86,40 @@ export default function Navbar() {
 			{redirect ? <Redirect to="/signin" /> : null}
 			<div className="sidebar" ref={sidebarRef}>
 				<div>
-					<Link to="/addItem"><AddIcon/> <p>Add An Item</p></Link>
-				</div>
-				<div>
-					<Link to="/favItems"><StarIcon/> <p>Fav Items</p></Link>
-				</div>
-				<div>
-					<Link to="/profile">
-						<img
-							src={
-								user?.profileImg
-									? `http://localhost:7000/profileImages/${user.profileImg}`
-									: "default.jpg"
-							}
-							className="profileImage"
-						/>
-						<p>Profile</p>
-					</Link>
-				</div>
-				<div>
-					<div
-						className="logout"
-						onClick={(e) => {
-							Cookies.remove("token");
-							dispatch({ type: "LOGOUT" });
-							setRedirect(true);
-						}}
-					>
-						<ExitToAppIcon />
+					<div>
+						<Link to="/addItem">
+							<AddIcon /> <p>Add An Item</p>
+						</Link>
+					</div>
+					<div>
+						<Link to="/favItems">
+							<StarIcon /> <p>Fav Items</p>
+						</Link>
+					</div>
+					<div>
+						<Link to="/profile">
+							<img
+								src={
+									user?.profileImg
+										? `http://localhost:7000/profileImages/${user.profileImg}`
+										: "default.jpg"
+								}
+								className="profileImage"
+							/>
+							<p>Profile</p>
+						</Link>
+					</div>
+					<div>
+						<div
+							className="logout"
+							onClick={(e) => {
+								Cookies.remove("token");
+								dispatch({ type: "LOGOUT" });
+								setRedirect(true);
+							}}
+						>
+							<ExitToAppIcon />
+						</div>
 					</div>
 				</div>
 			</div>

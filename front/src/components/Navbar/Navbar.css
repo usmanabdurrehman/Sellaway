@@ -67,14 +67,23 @@
 	background-color: var(--3rd);
 	transform:translateX(250px);
 	transition:0.4s;
+	z-index: 999;
 }
 
 .navbar .sidebarOpen{
 	transform:translateX(0);
 }
 
-.navbar .sidebar>div{
+.navbar .sidebar>div>div{
 	margin-top:25px;
+}
+
+.navbar .sidebar>div>div>a{
+	display: flex;
+}
+
+.navbar .sidebar>div>div>a>p{
+	margin-left: 5px;
 }
 
 .navbar .profileImage{
